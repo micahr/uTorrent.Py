@@ -35,7 +35,7 @@ uTorrent.py and associated modules/tools were developed with:
 
 (beyond source code and a few scattered comments)
 
-For starters, try running u2til.py -h
+For starters, try running `u2til.py -h`
 
 That's all, good luck, much uTorrentness to you!
 
