@@ -1,3 +1,33 @@
+Getting Started
+---------------
+
+For starters, try running `u2til.py -h`
+
+**THERE IS NO DOCUMENTATION AT THIS TIME.** 
+
+(beyond source code and a few scattered comments)
+
+That's all, good luck, much uTorrentness to you!
+
+
+Dependencies
+------------
+
+uTorrent.py and associated modules/tools were developed with:
+
+-   Windows XP Professional SP2
+-   Python 2.5 (r25:51908, Sep 19 2006, 09:52:17) [MSC v.1310 32 bit(Intel)] on win3
+-   simplejson Python module (included)
+-   uTorrent 1.6.1 BETA (build 483) w/ WebUI v0.310b2
+	
+
+Caveats
+-------
+
+-   When you run uTorrent.py or associated files, you must be *in* their directory. (The logger doesn't like it otherwise.)
+-   This should be self-explanatory but the WebUI has to be enabled.
+
+
 License
 -------
 
@@ -18,24 +48,4 @@ License
 >   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 	
 Read LICENSE for more details.
-
-uTorrent.py and associated modules/tools were developed with:
-
--   Windows XP Professional SP2
--   Python 2.5 (r25:51908, Sep 19 2006, 09:52:17) [MSC v.1310 32 bit(Intel)] on win3
--   simplejson Python module (included)
--   uTorrent 1.6.1 BETA (build 483) w/ WebUI v0.310b2
-	
-*CAVEATS*:
-
--   When you run uTorrent.py or associated files, you must be *in* their directory. (The logger doesn't like it otherwise.)
--   This should be self-explanatory but the WebUI has to be enabled.
-
-**THERE IS NO DOCUMENTATION AT THIS TIME.** 
-
-(beyond source code and a few scattered comments)
-
-For starters, try running `u2til.py -h`
-
-That's all, good luck, much uTorrentness to you!
 
