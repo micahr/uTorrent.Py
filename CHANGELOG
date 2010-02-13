@@ -1,0 +1,22 @@
+CHANGELOG
+
+2006-10-27 01:45 UTC-5 Rob Crowther <weilawei@gmail.com>
+*	ut2il.py 0.1.0 released
+
++	merged utility scripts into ut2il.py
+
+2006-10-24 21:35 UTC-5 Rob Crowther <weilawei@gmail.com>
+*	uTorrent.py 0.1.1 ALPHA released
+
++ 	webui_add_torrent
++	webui_add_url
++	webui_get_props
++	webui_set_prop
++	webui_remove
++	webui_remove_data
+
+2006-10-24 16:07 UTC-5 Rob Crowther <weilawei@gmail.com>
+*	uTorrent.py 0.1.0 ALPHA released
+
++	basic functional implementation
++	utility scripts
