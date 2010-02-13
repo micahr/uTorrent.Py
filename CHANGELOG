@@ -1,5 +1,8 @@
 CHANGELOG
 
+2010-02-12 Rob Crowther <weilawei@gmail.com>
+*   Moved this prohect into git to avoid git cleaning it again.
+
 2006-10-27 01:45 UTC-5 Rob Crowther <weilawei@gmail.com>
 *	ut2il.py 0.1.0 released
 
