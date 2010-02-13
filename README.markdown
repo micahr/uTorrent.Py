@@ -1,3 +1,5 @@
+**NOTE**: This hasn't been actively maintained since 2006, but you're welcome to use it or ask me questions about it.
+
 Getting Started
 ---------------
 
