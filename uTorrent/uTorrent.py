@@ -18,71 +18,26 @@
 #	License along with this library; if not, write to the Free Software 
 #	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-import logging, sys, socket, simplejson
+import sys
+import socket
+import logging
 from base64 import b64encode
 from httplib import *
 from urllib import quote
-
-#	date/timestamp [LEVEL] error message
-logging.basicConfig(datefmt='%d %b %Y %H:%M:%S',
-					format='%(asctime)s [%(levelname)s] %(message)s',
-					filename='log/uTorrent.log')
-
-#	UTORRENT CONSTANTS
-#	modify these, fuck things up
-UT_DEBUG					= True
-
-#	file priorities
-UT_FILE_PRIO_SKIP 				= r'0'
-UT_FILE_PRIO_LOW 				= r'1'
-UT_FILE_PRIO_NORMAL 			= r'2'
-UT_FILE_PRIO_HIGH 				= r'3'
-
-#	torrent states
-UT_TORRENT_STATE_START			= 0x00
-UT_TORRENT_STATE_FORCESTART		= 0x01
-UT_TORRENT_STATE_PAUSE      	= 0x02
-UT_TORRENT_STATE_STOP       	= 0x03
-
-#	individual torrent properties
-UT_TORRENT_DETAIL_HASH 			= 0
-UT_TORRENT_DETAIL_TRACKERS 		= 1
-UT_TORRENT_DETAIL_ULRATE 		= 2
-UT_TORRENT_DETAIL_DLRATE 		= 3
-UT_TORRENT_DETAIL_SUPERSEED 	= 4
-UT_TORRENT_DETAIL_DHT 			= 5
-UT_TORRENT_DETAIL_PEX 			= 6
-UT_TORRENT_DETAIL_SEED_OVERRIDE	= 7
-UT_TORRENT_DETAIL_SEED_RATIO 	= 8
-UT_TORRENT_DETAIL_SEED_TIME 	= 9
-UT_TORRENT_DETAIL_ULSLOTS 		= 10
-
-
-#	torrent info/stats
-UT_TORRENT_PROP_HASH        	= 0
-UT_TORRENT_PROP_NAME        	= 2
-UT_TORRENT_PROP_LABEL			= 11
-UT_TORRENT_PROP_STATE			= 1
-UT_TORRENT_STAT_BYTES_SIZE		= 3
-UT_TORRENT_STAT_BYTES_LEFT		= 18
-UT_TORRENT_STAT_BYTES_RECV		= 5
-UT_TORRENT_STAT_BYTES_SENT		= 6
-UT_TORRENT_STAT_SPEED_UP    	= 8
-UT_TORRENT_STAT_SPEED_DOWN 		= 9
-UT_TORRENT_STAT_P1000_DONE		= 4
-UT_TORRENT_STAT_ETA				= 10
-UT_TORRENT_STAT_AVAILABLE		= 16
-UT_TORRENT_STAT_QUEUE_POS		= 17
-UT_TORRENT_STAT_RATIO			= 7
-UT_TORRENT_STAT_SEED_AVAIL		= 15
-UT_TORRENT_STAT_PEER_AVAIL  	= 13
-UT_TORRENT_STAT_SEED_CONN		= 14
-UT_TORRENT_STAT_PEER_CONN		= 12
+from constants import *
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
 #	uTorrent
 #
 #	Provides a handle with fine grained torrent state
 #	and file priority methods
+
+#      date/timestamp [LEVEL] error message
+logging.basicConfig(datefmt='%d %b %Y %H:%M:%S',
+					format='%(asctime)s [%(levelname)s] %(message)s')
 
 class uTorrent(HTTPConnection):
 	username = None
@@ -132,7 +87,7 @@ class uTorrent(HTTPConnection):
 
 			return None
 
-		return simplejson.loads(webui_response.read())
+		return json.loads(webui_response.read())
 
 	#	gets torrent properties
 	def webui_get_props(self, torrent_hash):
@@ -247,7 +202,6 @@ class uTorrent(HTTPConnection):
 		return torrent_list
 
 	#	returns a dictionary of file names mapping tuples of indices and parent torrent hashes
-	#	ex. {'fileb.txt': (1, IAMABIGASSHASHFORATORRENT), 'filea.dat': (0, IAMABIGASSHASHFORATORRENT)}
 	def uls_files(self, torrent_name=None, torrent_hash=None):
 		if ((torrent_name is None) and (torrent_hash is None)):
 			logging.error('Specify torrent_name or torrent_hash')
@@ -360,14 +314,3 @@ class uTorrent(HTTPConnection):
 			for filename in file_list:
 				self.webui_prio_file(torrent_list[torrent_name], file_idx_list, file_prio)
 
-#	the sandbox
-#   TODO: make this an interactive prompt
-if (__name__ == '__main__'):
-    from code import interact
-    interact()
-    
-    uTorrent_handle = uTorrent(port='44800', username='admin', password='passy')
-    
-    uTorrent_handle.uprio_files(   [r'Brand_New-The_Devil_And_God_Are_Raging_Inside_Me-(With_UK_Bonus_Track)-2006-h8me.rar'],
-                                    UT_FILE_PRIO_HIGH,
-                                    torrent_hash = r'B1A6CCEEA6F60EF82901B205766535D8F1C68B4E')

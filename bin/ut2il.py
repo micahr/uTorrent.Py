@@ -20,9 +20,9 @@
 
 
 #	ut2il.py is a set of methods (with command line opts) to display useful
-#	development/debugging information from µTorrent
+#	development/debugging information from ï¿½Torrent
 
-#	ut2il.py <- µT util (the name derivation) [makes it easier to tab to]
+#	ut2il.py <- ï¿½T util (the name derivation) [makes it easier to tab to]
 
 #   % ut2il.py --help
 #	Usage: ut2il.py [options]
